@@ -741,34 +741,42 @@ Write`fixed #1`を記載 -> `Create pull request`を押下
 ![pr9](./images/pr9.png)
 
 ## ローカル取り込み(fetch & merge)
-リモートのmasterからローカルに取り込み
+ここではリモートGitHubリポジトリのmainからローカルのmainに最新の取り込みを行います
+
+branchの確認(このオペレーションでは`modify-readme`が作業branchとしてさされている)
 ```
 $ git branch
-  master
+  main
 * modify-readme
 ```
 
-masterに遷移(2.23.0以降は`git switch`)
+mainbに遷移する
 ```
-$ git checkout master
-Switched to branch 'master'
-Your branch is up to date with 'origin/master'.
+$ git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+```
+
+branchの確認(`main`を差していること)
+
+```
 $ git branch
-* master
+* main
   modify-readme
 ```
 
-fetch
+リモートGitHubリポジトリのmainの最新をfetchでローカルに取得する
+
 ```
-$ git fetch origin master
-Enter passphrase for key '/Users/miurahironori/.ssh/id_rsa':
+$ git fetch origin main
+Warning: Permanently added 'github.com,52.69.186.44' (RSA) to the list of known hosts.
 remote: Enumerating objects: 1, done.
 remote: Counting objects: 100% (1/1), done.
 remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
-Unpacking objects: 100% (1/1), done.
+Unpacking objects: 100% (1/1), 620 bytes | 620.00 KiB/s, done.
 From github.com:hironomiu/git-practice
- * branch            master     -> FETCH_HEAD
-   6af3859..79dcedd  master     -> origin/master
+ * branch            main       -> FETCH_HEAD
+   fc9aa86..6ee5cfa  main       -> origin/main
 ```
 
 diff
@@ -783,21 +791,23 @@ index 3e4b5a2..40551f9 100644
 +fugahogepiyo
 ```
 
-merge
+ローカルのmainリポジトリにリモートリポジトリから取得したFETCH_HEADをmergeで取り込みましょう
+
 ```
 $ git merge FETCH_HEAD
-Updating 6af3859..79dcedd
+Updating fc9aa86..6ee5cfa
 Fast-forward
  README.md | 1 +
  1 file changed, 1 insertion(+)
 ```
 
-diff(何もない)
+diff(何もないので同じ状態)
 ```
 $ git diff HEAD FETCH_HEAD
 ```
 
-確認
+確認(リモートリポジトリの内容`fugahogepiyo`が取り込まれていることを確認)
+
 ```
 $ cat README.md
 # git-practice
