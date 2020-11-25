@@ -814,6 +814,8 @@ $ cat README.md
 fugahogepiyo
 ```
 
+今回はリモートリポジトリからfetch->mergeでローカルリポジトリのmainに最新を取り込んだが、ローカルで別branchで開発した内容は直接mainにmergeすることも可能です
+
 ## 追加 CONFLICTの解消
 ### clone
 GitHub -> Clone or download -> Use SSH -> クリップボードにコピー
