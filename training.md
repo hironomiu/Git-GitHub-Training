@@ -26,6 +26,11 @@ user.name=hironomiu
 user.email=hironomiu@gmail.com
 ```
 
+### デフォルトブランチの設定
+デフォルトブランチを`main`で設定しましょう
+```
+$ git config --global init.defaultBranch main
+```
 ### git操作
 初期化によるローカルリポジトリの作製(ワークツリーの作製)
 ```
@@ -58,16 +63,19 @@ $ cat README.md
 ```
 
 ステータス確認
+`.gitignore``README.md`がインデックス対象となっていること
 ```
 $ git status
-On branch master
+On branch main
 
 No commits yet
 
-Changes to be committed:
-  (use "git rm --cached <file>..." to unstage)
-	new file:   .gitignore
-	new file:   README.md
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
 ```
 
 add(インデックスに登録)
@@ -77,9 +85,10 @@ $ git add .gitignore
 ```
 
 ステータス確認
+`.gitignore``README.md`がコミット対象となっていること
 ```
 $ git status
-On branch master
+On branch main
 
 No commits yet
 
@@ -89,11 +98,11 @@ Changes to be committed:
 	new file:   README.md
 ```
 
-commit(ローカルリポジトリに記録)
+コミット(commit)でローカルリポジトリに記録。`-m`でコミットメッセージを記載しましょう
 ```
 $ git commit -m "created .gitignore README.md"
-[master (root-commit) 6af3859] created README.md
- 2 files changed, 1 insertion(+)
+[main (root-commit) fc9aa86] created .gitignore README.md
+ 2 files changed, 31 insertions(+)
  create mode 100644 .gitignore
  create mode 100644 README.md
 ```
@@ -101,39 +110,39 @@ $ git commit -m "created .gitignore README.md"
 ブランチの確認
 ```
 $ git branch
-* master
+* main
 ```
 
 ステータス確認
 ```
 $ git status
-On branch master
+On branch main
 nothing to commit, working tree clean
 ```
 
 ログの確認
 ```
 $ git log
-commit 6af38593cd0476e4abfce0590582db58311bb424 (HEAD -> master)
+commit fc9aa867672f8bf471269849487933d15e92c81b (HEAD -> main)
 Author: hironomiu <hironomiu@gmail.com>
-Date:   Fri Dec 6 10:33:23 2019 +0900
+Date:   Wed Nov 25 14:31:24 2020 +0900
 
-    created README.md
+    created .gitignore README.md
 ```
 
 Author,Commiterを確認
 ```
 $ git log --pretty=fuller
-commit 758a745499dbdad697e3eaa4f8e9bb9579f45a30 (HEAD -> master)
+commit fc9aa867672f8bf471269849487933d15e92c81b (HEAD -> main)
 Author:     hironomiu <hironomiu@gmail.com>
-AuthorDate: Mon Apr 20 13:07:08 2020 +0900
+AuthorDate: Wed Nov 25 14:31:24 2020 +0900
 Commit:     hironomiu <hironomiu@gmail.com>
-CommitDate: Mon Apr 20 13:07:08 2020 +0900
+CommitDate: Wed Nov 25 14:31:24 2020 +0900
 
     created .gitignore README.md
 ```
 
-README.mdの追記
+README.mdの末行に`hogefugapiyo`の追記
 ```
 $ vi README.md
 $ cat README.md
@@ -141,7 +150,7 @@ $ cat README.md
 hogefugapiyo
 ```
 
-差分の確認
+`git diff`で追記した`README.md`との差分を確認する
 ```
 $ git diff README.md
 diff --git a/README.md b/README.md
@@ -156,7 +165,7 @@ index 3e4b5a2..4d69739 100644
 ステータスの確認
 ```
 $ git status
-On branch master
+On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
@@ -165,10 +174,13 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-ワーキングディレクトリ内の変更の取り消し(2.23.0以降は`git restore`で同様のことが可能)
+ワーキングディレクトリ内の変更の取り消し(インデックス前の取り消し)
 ```
-$ git checkout README.md
-Updated 1 path from the index
+$ git restore README.md
+```
+
+追記した内容以前に戻っていること
+```
 $ cat README.md
 # git-practice
 ```
@@ -176,10 +188,11 @@ $ cat README.md
 ステータス確認
 ```
 $ git status
-On branch master
+On branch main
+nothing to commit, working tree clean
 ```
 
-README.mdの追記
+README.mdの末行に`piyofugahoge`の追記
 ```
 $ vi README.md
 $ cat README.md
@@ -190,7 +203,7 @@ piyofugahoge
 ステータス確認
 ```
 $ git status
-On branch master
+On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
@@ -199,9 +212,10 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-差分の確認
+`git diff`で追記した`README.md`との差分を確認する
 ```
 $ git diff README.md
+diff --git a/README.md b/README.md
 index 3e4b5a2..2565824 100644
 --- a/README.md
 +++ b/README.md
@@ -210,7 +224,7 @@ index 3e4b5a2..2565824 100644
 +piyofugahoge
 ```
 
-add(`git add .`はカレントディレクトリ全てを指定)
+addでインデックスに登録する(`git add .`の`.`はカレントディレクトリ全てを指定する意味)
 ```
 $ git add .
 ```
@@ -218,7 +232,7 @@ $ git add .
 ステータス確認
 ```
 $ git status
-On branch master
+On branch main
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	modified:   README.md
@@ -230,24 +244,23 @@ $ git diff README.md
 ```
 
 インデックスの登録を取り消す
-2.23.0以降は`git restore --staged README.md`がおすすめ
 ```
-$ git reset HEAD README.md
-Unstaged changes after reset:
-M	README.md
+$ git restore --staged README.md
 ```
 
 ステータス確認
 ```
 $ git status
-On branch master
+On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
 	modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-差分の確認
+差分の確認。README.mdの末行に`piyofugahoge`の追記が存在すること
 ```
 $ git diff README.md
 diff --git a/README.md b/README.md
@@ -274,38 +287,40 @@ $ git add .
 ステータス確認
 ```
 $ git status
-On branch master
+On branch main
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	modified:   README.md
 ```
 
-commit(ローカルリポジトリに記録)
+コミット(commit)でローカルリポジトリに記録
 ```
 $ git commit -m "modify README.md"
-[master 0052cf3] modify README.md
+[main b85751a] modify README.md
  1 file changed, 1 insertion(+)
 ```
 
-ステータス確認
+ステータス確認(`add commit`の対象が存在しないこと)
 ```
 $ git status
-On branch master
+On branch main
 nothing to commit, working tree clean
 ```
 
-ログの確認
+これまでのコミットログの確認(ログは下から上で時系列に並ぶ)
 ```
 $ git log
-commit 0052cf340c58c076ae01fc172d21bbac9861e223 (HEAD -> master)
+commit b85751a3f95a9abd5815174cd5b78aaf2c8cc487 (HEAD -> main)
 Author: hironomiu <hironomiu@gmail.com>
-Date:   Fri Dec 6 11:08:10 2019 +0900
+Date:   Wed Nov 25 14:49:47 2020 +0900
 
     modify README.md
 
-commit 6af38593cd0476e4abfce0590582db58311bb424
+commit fc9aa867672f8bf471269849487933d15e92c81b
 Author: hironomiu <hironomiu@gmail.com>
-Date:   Fri Dec 6 10:33:23 2019 +0900
+Date:   Wed Nov 25 14:31:24 2020 +0900
+
+    created .gitignore README.md
 ```
 
 commitの取り消し(ワーキングディレクトリの内容も巻き戻し)
