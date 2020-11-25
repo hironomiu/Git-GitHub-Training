@@ -878,6 +878,7 @@ $ git commit -m "first"
 ```
 
 GitHubリポジトリに`first`branchをpush
+
 ```
 # git push origin first
 Warning: Permanently added 'github.com,13.114.40.48' (RSA) to the list of known hosts.
@@ -894,26 +895,68 @@ remote:
 To github.com:hironomiu/git-practice.git
  * [new branch]      first -> first
 ```
+
 branchesタブを選択し`first`branchが存在することを確認
 
 ![branch](./images/branch.png)
 
 ### ターミナル2(新しいリポジトリ)で作業
 
+`second`branchの作成と遷移、確認(`second`を指し示していること)
+
 ```
 $ git branch second
-$ git checkout second
+$ git switch second
+Switched to branch 'second'
+$ git branch
+  main
+* second
+```
+
+README.mdの末行に`second`の追記編集
+
+```
 $ vi README.md
 $ cat README.md
 # git-practice
 fugahogepiyo
 second
-$ git add .
-$ git commit -m "second"
-$ git push origin second
 ```
 
+addとcommit
+
+```
+$ git add .
+$ git commit -m "second"
+```
+
+GitHubリポジトリに`second`branchをpush
+
+```
+$ git push origin second
+Warning: Permanently added 'github.com,13.114.40.48' (RSA) to the list of known hosts.
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'second' on GitHub by visiting:
+remote:      https://github.com/hironomiu/git-practice/pull/new/second
+remote:
+To github.com:hironomiu/git-practice.git
+ * [new branch]      second -> secondWarning: Permanently added 'github.com,13.114.40.48' (RSA) to the list of known hosts.
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'second' on GitHub by visiting:
+remote:      https://github.com/hironomiu/git-practice/pull/new/second
+remote:
+To github.com:hironomiu/git-practice.git
+ * [new branch]      second -> second
+```
+
+branchesタブを選択し`second`branchが存在することを確認
+
+![branch2](./images/branch2.png)
+
 ### pull requestの作成とmerge
+
 GitHubの画面から
 
 Compare & pull request -> Write「first」 -> Create pull request -> Merge pull request -> Confirm merge -> Delete branch
