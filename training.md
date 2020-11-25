@@ -928,6 +928,8 @@ addとcommit
 ```
 $ git add .
 $ git commit -m "second"
+[second 8534bb0] second
+ 1 file changed, 1 insertion(+)
 ```
 
 GitHubリポジトリに`second`branchをpush
@@ -935,52 +937,83 @@ GitHubリポジトリに`second`branchをpush
 ```
 $ git push origin second
 Warning: Permanently added 'github.com,13.114.40.48' (RSA) to the list of known hosts.
-Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
-remote:
-remote: Create a pull request for 'second' on GitHub by visiting:
-remote:      https://github.com/hironomiu/git-practice/pull/new/second
-remote:
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 303 bytes | 303.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 To github.com:hironomiu/git-practice.git
- * [new branch]      second -> secondWarning: Permanently added 'github.com,13.114.40.48' (RSA) to the list of known hosts.
-Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
-remote:
-remote: Create a pull request for 'second' on GitHub by visiting:
-remote:      https://github.com/hironomiu/git-practice/pull/new/second
-remote:
-To github.com:hironomiu/git-practice.git
- * [new branch]      second -> second
+   6ee5cfa..8534bb0  second -> second
 ```
 
 branchesタブを選択し`second`branchが存在することを確認
 
 ![branch2](./images/branch2.png)
 
-### pull requestの作成とmerge
+### ターミナル1、pull requestの作成とmerge
 
-GitHubの画面から
+GitHubの画面から`Pull requests`タブ -> `New pull request`を押下
 
-Compare & pull request -> Write「first」 -> Create pull request -> Merge pull request -> Confirm merge -> Delete branch
+![pr-a](./images/pr-a.png)
 
+`first`branchを選択 -> `Create pull request`を押下
 
-### pull requestの作成とmerge
-GitHubの画面から
+![pr-a2](./images/pr-a2.png)
 
-Compare & pull request -> Write「second」 -> Create pull request -> Merge pull request -> Confirm merge -> Delete branch
+Write`first`を記載 -> `Create pull request`を押下
 
-`Can’t automatically merge.` が表示される
+![pr-a3](./images/pr-a3.png)
 
-新しいリポジトリ(secondを編集)でfetch
+`Confirm merge`を押下
+
+![pr-a4](./images/pr-a4.png)
+
+`Delete branch`は省略する
+
+### ターミナル2、pull requestの作成とmerge
+
+GitHubの画面から`Pull requests`タブ -> `New pull request`を押下
+
+![pr-a](./images/pr-a.png)
+
+`second`branchを選択 -> `Create pull request`を押下
+
+![pr-b2](./images/pr-b2.png)
+
+Write`second`を記載 -> `Create pull request`を押下
+
+![pr-b3](./images/pr-b3.png)
+
+conflictが発生していることを確認
+
+![pr-b4](./images/pr-b4.png)
+
+### ターミナル2でコンフリクトの解消
+リモートリポジトリのmainの最新をfetch
+
 ```
-$ git fetch origin master
+$ git fetch origin main
 ```
-merge
+
+branchの確認(`second`であること)
+```
+$ git branch
+  main
+* second
+```
+
+`second`branchにFETCH_HEADをmergeで取り込む
+
 ```
 $ git merge FETCH_HEAD
 Auto-merging README.md
 CONFLICT (content): Merge conflict in README.md
 Automatic merge failed; fix conflicts and then commit the result.
 ```
-内容を確認
+
+コンフリクトの内容を確認
+
 ```
 $ cat README.md
 # git-practice
@@ -989,9 +1022,10 @@ fugahogepiyo
 second
 =======
 first
->>>>>>> e968e86c05394d2d6d14fe8e1cc5727841772257
+>>>>>>> 7b868e363d289674d599834ca25fc0517cda97fe
 ```
-CONFLICTを解消
+
+CONFLICTを解消(今回は末行に`second`,`first`の順で編集、実際のコンフリクトはあるべき姿に編集する)
 ```
 $ vi README.md
 $ cat README.md
@@ -1000,17 +1034,38 @@ fugahogepiyo
 second
 first
 ```
+
 add&commit
 ```
 $ git add .
 $ git commit -m "CONFLICTの修正"
+[second a1807fb] CONFLICTの修正
 ```
 
-push
+リモートリポジトリに`second`branchの最新commitをpush
 ```
 $ git push origin second
+Warning: Permanently added 'github.com,52.69.186.44' (RSA) to the list of known hosts.
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 368 bytes | 368.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:hironomiu/git-practice.git
+   8534bb0..a1807fb  second -> second
 ```
 
-GitHubの画面から
+GitHubの`Pull reqests`タブ画面でグリーンになっていることを確認し`Merge pull request`を押下
 
-Confirm merge -> Delete branch
+![pr-b5](./images/pr-b5.png)
+
+`Confirm merge`を押下
+
+![pr-b6](./images/pr-b6.png)
+
+Delete branchは省略`<>Code`タブ、`README.md`に`second first`の記述が追加されていること
+
+![pr-b7](./images/pr-b7.png)
+
+ここまででコンフリクトの解消は完了です
