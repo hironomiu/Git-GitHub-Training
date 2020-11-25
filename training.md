@@ -704,9 +704,37 @@ GitHub上でpushされたbranchを確認しましょう
 ![push2](./images/push2.png)
 
 ### pull requestの作成とmerge
-GitHubの画面から
+GitHubの画面から`Pull request`タブを選択 -> `New pull request`を押下(`Compare & pull request`でも同様のことは可能)
 
-Compare & pull request -> Write「fixed #1」 -> Create pull request -> Merge pull request -> Confirm merge -> Delete branch
+![pr](./images/pr.png)
+
+`modify-readme`を選択 -> `Create pull request`を押下
+
+![pr2](./images/pr2.png)
+
+Write`fixed #1`を記載 -> `Create pull request`を押下
+
+![pr3](./images/pr3.png)
+
+`Merge pull request`を押下(実際にはソースコードレビューを行った上で行う)
+
+![pr4](./images/pr4.png)
+
+`Confirm merge`を押下
+
+![pr5](./images/pr5.png)
+
+`Delete branch`を押下(開発スタイルで残したい場合は不要)
+
+![pr6](./images/pr6.png)
+
+`Pull requests`タブを選択。pull requestが存在しない(closeされている)ことを確認
+
+![pr7](./images/pr7.png)
+
+`issues`タブを選択。issueが存在しない(closeされている)ことを確認
+
+![pr8](./images/pr8.png)
 
 ## ローカル取り込み(fetch & merge)
 リモートのmasterからローカルに取り込み
