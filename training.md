@@ -563,36 +563,58 @@ Branch 'main' set up to track remote branch 'main' from 'origin'.
 ![new-repo4](./images/new-repo4.png)
 
 ### 開発サイクル
-これから開発サイクル「issue、branch、add、commit、push、pull request、merge」を行います
+ここからはGitとGitHubを組み合わせ、開発サイクルで使われる代表的な機能を「issue、branch、add、commit、push、pull request、merge」を用いて行います
 
 ### issue
 GitHubの画面から
 
-issues -> New issue -> title「README編集」Write「fugahogepiyoを追記する」 -> Submit new issue
+issues -> New issue押下
+
+![issue](./images/issue.png)
+
+title`README編集`Write`fugahogepiyoを追記する`を記載 -> Submit new issue押下
+
+![issue2](./images/issue2.png)
+
+issueが登録されていること`#1`はこのissueのパーマリンク。GitHubでは様々なパーマリンックがあります
+
+![issue3](./images/issue3.png)
 
 ### branch
-masterで活動してることを確認
+ローカルリポジトリではデフォルトブランチのmainで活動してることを確認しましょう。`*`のポインターが付いているブランチが現在作業しているブランチです
+
 ```
 $ git branch
-* master
+* main
 ```
 
-branchの作成
+issueに紐づく作業を行うbranch`modify-readme`を作成しましょう
+
 ```
 $ git branch modify-readme
 $ git branch
-* master
+* main
   modify-readme
 ```
 
-modify-readmeに遷移(2.23.0以降は`git switch modify-readme`がおすすめ)
+作業するbranchを`main`から`modify-readme`に遷移しましょう
+
 ```
-$ git checkout modify-readme
+$ git switch modify-readme
 Switched to branch 'modify-readme'
 ```
 
+現在の作業branchが`modify-readme`にポインタが指し示していることを確認しましょう
+
+```
+$ git branch
+  main
+* modify-readme
+```
+
 ### README.md編集
-README.mdをissueの内容に沿って編集
+issueに記載した作業をREADME.mdに対して編集しましょう
+
 ```
 $ vi README.md
 $ cat README.md
