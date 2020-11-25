@@ -896,7 +896,7 @@ To github.com:hironomiu/git-practice.git
 ```
 branchesタブを選択し`first`branchが存在することを確認
 
-![clone](./images/clone.png)
+![branch](./images/branch.png)
 
 ### ターミナル2(新しいリポジトリ)で作業
 
