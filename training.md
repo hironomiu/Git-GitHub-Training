@@ -736,6 +736,10 @@ Write`fixed #1`を記載 -> `Create pull request`を押下
 
 ![pr8](./images/pr8.png)
 
+`<>Code`タブを選択`README.md`に`fugahogepiyo`が記載されていること
+
+![pr9](./images/pr9.png)
+
 ## ローカル取り込み(fetch & merge)
 リモートのmasterからローカルに取り込み
 ```
