@@ -613,7 +613,7 @@ $ git branch
 ```
 
 ### README.md編集
-issueに記載した作業をREADME.mdに対して編集しましょう
+issueに記載した作業内容をREADME.mdに対して編集しましょう
 
 ```
 $ vi README.md
@@ -652,10 +652,10 @@ add
 $ git add .
 ```
 
-commit
+commit(コミットメッセージにissue`#1`の作業であることを記載しましょう)
 ```
 $ git commit -m "#1 modify README.md"
-[modify-readme aacfd67] #1 modify README.md
+[modify-readme 8f20d8c] #1 modify README.md
  1 file changed, 1 insertion(+)
 ```
 
@@ -665,9 +665,21 @@ $ git status
 On branch modify-readme
 nothing to commit, working tree clean
 ```
- 
+
+### GitHub originの確認
+GitHubリポジトリ(今回はこちらがorigin)を確認しましょう
+
+注：`XXX`は各GitHubユーザが表示される
+
+```
+$ git remote -v
+origin	git@github.com:XXX/git-practice.git (fetch)
+origin	git@github.com:XXX/git-practice.git (push)
+```
+
 ### push
-作成したmodify-readmeをpush
+作成したmodify-readmeをGitHubリポジトリ`git-practice`にpushしましょう
+
 ```
 $ git push origin modify-readme
 Enter passphrase for key '/Users/miurahironori/.ssh/id_rsa':
@@ -682,6 +694,14 @@ remote:
 To github.com:hironomiu/git-practice.git
  * [new branch]      modify-readme -> modify-readme
 ```
+
+GitHub上でpushされたbranchを確認しましょう
+
+![push](./images/push.png)
+
+今会作成した`modify-readme`などが表示されていることを確認しましょう
+
+![push2](./images/push2.png)
 
 ### pull requestの作成とmerge
 GitHubの画面から
