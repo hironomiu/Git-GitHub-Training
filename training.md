@@ -517,7 +517,9 @@ $ cat id_rsa.pub
 Title記入 -> Key(作成したid_rsa.pubの内容をコピペ) -> Add SSH key押下
 
 ![ssh-key2](./images/ssh-key2.png)
+
 #### 確認
+sshコマンドで`git`ユーザで`github.com`に対して接続確認を行う
 ```
 $ ssh git@github.com
 Enter passphrase for key ;
@@ -527,27 +529,38 @@ Connection to github.com closed.
 ```
 
 ### リポジトリの作成
-git-practiceで作成しましょう
+これからの演習で使うGitHubリポジトリを`git-practice`で作成しましょう
 
-Repositories -> New -> Repository name「git-practice」 -> Create repository
+![new-repo](./images/new-repo.png)
 
-…or push an existing repository from the command lineの以下をローカルで実行
+`Repository name`に`git-practice`を記載 -> Create repositoryを押下
+
+![new-repo2](./images/new-repo2.png)
+
+ローカルでは事前にリポジトリを作成しているので`…or push an existing repository from the command line`内に記載された内容を全てローカルで実行しましょう(パスフレーズを要求されたら設定したパスフレーズを入力しましょう)
+
+![new-repo3](./images/new-repo3.png)
+
+注：以下`XXX`は各自のGitHubアカウント名となる
 ```
-$ git remote add origin git@github.com:xxxxu/git-practice.git
-$ git push -u origin master
-Enter passphrase for key '/xxxx/.ssh/id_rsa':
+$ git remote add origin git@github.com:XXX/git-practice.git
+$ git branch -M main
+$ git push -u origin main
+Warning: Permanently added 'github.com,52.192.72.89' (RSA) to the list of known hosts.
 Enumerating objects: 4, done.
 Counting objects: 100% (4/4), done.
-Delta compression using up to 12 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (4/4), 283 bytes | 283.00 KiB/s, done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 635 bytes | 635.00 KiB/s, done.
 Total 4 (delta 0), reused 0 (delta 0), pack-reused 0
-To github.com:hironomiu/git-practice.git
- * [new branch]      master -> master
-Branch 'master' set up to track remote branch 'master' from 'origin'.
+To github.com:XXX/git-practice.git
+ * [new branch]      main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
 ```
 
-ブラウザをリロードしてGitの演習で作成した内容が反映されていることを確認
+ブラウザをリロードしてGitの演習で作成した内容が反映されていることを確認しましょう
+
+![new-repo4](./images/new-repo4.png)
 
 ### 開発サイクル
 これから開発サイクル「issue、branch、add、commit、push、pull request、merge」を行います
