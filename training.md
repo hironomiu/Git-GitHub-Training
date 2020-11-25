@@ -481,7 +481,7 @@ $ git log
 
 ## GitHub
 
-### 鍵の登録
+### GitHubに公開鍵の登録
 鍵が作成できない or 扱えない人は行わなくてOKです
 
 #### 鍵の作成
@@ -510,8 +510,13 @@ $ cat id_rsa.pub
 ```
 
 #### 鍵の登録
-右上からsettings -> SSH and GPG keys -> New SSH key -> Title -> Key(作成したid_rsa.pubの内容をコピペ) -> Add SSH key
+右上からsettings -> SSH and GPG keys -> New SSH key押下
 
+![ssh-key](./images/ssh-key.png)
+
+Title記入 -> Key(作成したid_rsa.pubの内容をコピペ) -> Add SSH key押下
+
+![ssh-key2](./images/ssh-key2.png)
 #### 確認
 ```
 $ ssh git@github.com
