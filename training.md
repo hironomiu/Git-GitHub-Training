@@ -323,31 +323,38 @@ Date:   Wed Nov 25 14:31:24 2020 +0900
     created .gitignore README.md
 ```
 
-commitの取り消し(ワーキングディレクトリの内容も巻き戻し)
+現在のREADME.mdの内容を確認
 ```
 $ cat README.md
 # git-practice
 piyofugahoge
+```
 
+commitの取り消し(ワーキングディレクトリの内容も取り消し)
+```
 $ git reset --hard HEAD^
+HEAD is now at fc9aa86 created .gitignore README.md
+```
 
+現在のREADME.mdの内容を確認
+```
 $ cat README.md
 # git-practice
 ```
 
-ログの確認
+コミットログから`modify README.md`のコミットログが取り消されていることを確認する(最新のコミットの取り消し)
 ```
 $ git log
-commit 6af38593cd0476e4abfce0590582db58311bb424 (HEAD -> master, origin/master)
+commit fc9aa867672f8bf471269849487933d15e92c81b (HEAD -> main)
 Author: hironomiu <hironomiu@gmail.com>
-Date:   Fri Dec 6 10:33:23 2019 +0900
+Date:   Wed Nov 25 14:31:24 2020 +0900
 
-    created README.md
+    created .gitignore README.md
 ```
 
-**commitの取り消し(インデックスに戻しワークツリーに戻す)**
+**ここからはcommitの取り消し(インデックスに戻しワークツリーに戻す)を行う**
 
-README.mdの追記
+README.mdの末行に`piyofugahoge`の追記
 ```
 $ vi README.md
 $ cat README.md
@@ -363,20 +370,23 @@ $ git add .
 commit(ローカルリポジトリに記録)
 ```
 $ git commit -m "modify README.md"
-[master 73d5417] modify README.md
+[main cedfb1d] modify README.md
  1 file changed, 1 insertion(+)
 ```
 
-ログの確認
+コミットログから`modify README.md`が追加されていることの確認
 ```
 $ git log
-commit 73d541704f634965f879285218c862ccb411758a (HEAD -> master)
+commit cedfb1d94834035a034682d6514f797d2a57ebd4 (HEAD -> main)
 Author: hironomiu <hironomiu@gmail.com>
-Date:   Wed May 27 17:09:06 2020 +0900
+Date:   Wed Nov 25 15:33:53 2020 +0900
+
     modify README.md
-commit b9e365dd9205ebae5c5cc8cd78a147dafb828e68
+
+commit fc9aa867672f8bf471269849487933d15e92c81b
 Author: hironomiu <hironomiu@gmail.com>
-Date:   Wed May 27 16:55:17 2020 +0900
+Date:   Wed Nov 25 14:31:24 2020 +0900
+
     created .gitignore README.md
 ```
 
@@ -385,10 +395,10 @@ commitの取り消し(インデックスに戻す)
 $ git reset --soft HEAD^
 ```
 
-ステータス確認
+ステータスからコミット(`commit`)対象に`README.md`が存在することを確認
 ```
 $ git status
-On branch master
+On branch main
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	modified:   README.md
@@ -413,18 +423,19 @@ $ cat README.md
 piyofugahoge
 ```
 
-ステータスの確認
+ステータスからインデックス(`add`)対象に`README.md`が存在することを確認
 ```
 $ git status
-On branch master
+On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
 	modified:   README.md
+
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-ワークツリーの取り消し
+README.mdのワークツリー上の変更`piyofugahoge`の取り消し
 ```
 $ git restore README.md
 ```
@@ -432,14 +443,40 @@ $ git restore README.md
 ステータス確認
 ```
 $ git status
-On branch master
+On branch main
 nothing to commit, working tree clean
 ```
 
-ファイル確認
+ファイル確認し末行に`piyofugahoge`が存在しないこと
 ```
 $ cat README.md
 # git-practice
+```
+
+### Gitおさらい
+インデックス
+```
+$ git add XX
+```
+
+コミット(`-m`でコミットメッセージを記載する)
+```
+$ git commmit -m "XXX"
+```
+
+差分の確認(様々な差分の確認方法があるので調べてみましょう)
+```
+$ git diff XX
+```
+
+状態の確認
+```
+$ git satatus
+```
+
+コミットログの確認
+```
+$ git log
 ```
 
 ## GitHub
