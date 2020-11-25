@@ -816,11 +816,20 @@ fugahogepiyo
 
 今回はリモートリポジトリからfetch->mergeでローカルリポジトリのmainに最新を取り込んだが、ローカルで別branchで開発した内容は直接mainにmergeすることも可能です
 
-## 追加 CONFLICTの解消
+## CONFLICTの解消
+ここではCONFLICTを発生させ解決していきます。ここまで行ったローカルリポジトリ(ターミナル1と呼ぶ)と別でもう一つローカルリポジトリを作成(`clone`にて、ターミナル2と呼ぶ)しオペレーションは行っていきます。
+
 ### clone
-GitHub -> Clone or download -> Use SSH -> クリップボードにコピー
+GitHubリポジトリ -> `Code`プルダウン -> `SSH`タブ選択 -> クリップボードにコピー
+
+![clone](./images/clone.png)
+
+ここまでのローカルリポジトリのディレクトリとは別ターミナル(ターミナル２)を用意し、任意の別ディレクトリでクリップボードにコピーした内容を`git clone `のあとにペーストし実行しましょう
+
+注：`XXX`はコピーした自分のGitHubアカウント名が入る
+
 ```
-$ git clone git@github.com:hironomiu/git-practice.git
+$ git clone git@github.com:XXX/git-practice.git
 Cloning into 'git-practice'...
 Enter passphrase for key '/Users/miurahironori/.ssh/id_rsa':
 remote: Enumerating objects: 19, done.
@@ -830,28 +839,67 @@ remote: Total 19 (delta 4), reused 17 (delta 3), pack-reused 0
 Receiving objects: 100% (19/19), done.
 Resolving deltas: 100% (4/4), done.
 ```
+
 ディレクトリ遷移
+
 ```
 $ cd git-practice
 ```
 
-最初のリポジトリ
+### ターミナル1(最初のリポジトリ)で作業
+
+`first`branchの作成と遷移、確認(`first`を指し示していること)
+
 ```
 $ git branch first
-$ git checkout first
+$ git switch first
+Switched to branch 'first'
+$ git branch
+* first
+  main
+  modify-readme
+```
+
+README.mdの末行に`first`の追記編集
+```
 $ vi README.md
 $ cat README.md
 # git-practice
 fugahogepiyo
 first
-$ git add .
-$ git commit -m "first"
-[first deea0c2] first
- 1 file changed, 1 insertion(+)
-# git push origin first
 ```
 
-新しいリポジトリ
+addとcommit
+```
+$ git add .
+$ git commit -m "first"
+[first b103e8d] first
+ 1 file changed, 1 insertion(+)
+```
+
+GitHubリポジトリに`first`branchをpush
+```
+# git push origin first
+Warning: Permanently added 'github.com,13.114.40.48' (RSA) to the list of known hosts.
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 302 bytes | 302.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'first' on GitHub by visiting:
+remote:      https://github.com/hironomiu/git-practice/pull/new/first
+remote:
+To github.com:hironomiu/git-practice.git
+ * [new branch]      first -> first
+```
+branchesタブを選択し`first`branchが存在することを確認
+
+![clone](./images/clone.png)
+
+### ターミナル2(新しいリポジトリ)で作業
+
 ```
 $ git branch second
 $ git checkout second
