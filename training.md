@@ -471,7 +471,7 @@ $ git diff XX
 
 状態の確認
 ```
-$ git satatus
+$ git status
 ```
 
 コミットログの確認
