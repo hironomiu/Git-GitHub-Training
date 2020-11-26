@@ -1,4 +1,4 @@
-# Git&GitHub入門
+# Git-GitHub-Training
 
 ## Git
 基本的なgit操作(add,commit,etc)を学びます
