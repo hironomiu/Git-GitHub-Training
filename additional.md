@@ -138,14 +138,35 @@ GitHubアカウントのパスワードを入力し押下
 
 ## チームメンバーとしてオペレーション
 
-- チームメンバー git clone
+### チームリポジトリにアクセス
+collaboratorsに招待されたGitHubリポジトリにアクセスし「code」を押下、「SSH」を選択しクリップボードにコピー
 
-- GitHub issueの作成
+![team_development1](./images/team_development1.png)
+
+### clone
+任意のディレクトリでクリップボードにコピーしたgit repoのgit cloneを行う
+
+```
+$ git clone git@github.com:XXXXX/20210119_github.git
+```
+
+ディレクトリ遷移
+
+```
+$ cd 20210119_github
+$ pwd
+xxxxx/20210119_github
+```
+
+## チーム開発想定のオペレーション
+チームでするべきissueを作成し、それを各メンバーが行うことでチーム開発的なオペレーションのトレーニングを行う
+
+### GitHub issueの作成
   - メンバー分issue作成「メンバー.mdの作成」-> <メンバー名>.mdの作成「hoge」の記載
 
-- ローカルで開発
+### ローカルで開発
 　- issueに紐づくbranchの作成 -> git switch -> <メンバー>.mdの作成 -> git add -> git commit -> git push -> pr -> merge
 
-- ローカルに取り込み
+### ローカルに取り込み
   - git switch main -> git fetch -> git merge
 
