@@ -15,4 +15,5 @@
 - Git&GitHubを用いた「issue -> branch -> add -> commit -> push、pull request -> merge」の開発フロー
 
 ## 演習の進め方
-[training.md](./training.md)を上から順に進めましょう
+- [入門編 : training.md](./training.md)を上から順に進めましょう
+- [チーム開発ことはじめ : additional.md](additional.md) collaboratorsなどを使ったチーム開発についてはこちらを進めましょう
