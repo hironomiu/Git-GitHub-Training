@@ -159,14 +159,109 @@ xxxxx/20210119_github
 ```
 
 ## チーム開発想定のオペレーション
-チームでするべきissueを作成し、それを各メンバーが行うことでチーム開発的なオペレーションのトレーニングを行う
+チームでするべきissueを作成し、それを各メンバーが行うことでチーム開発的なオペレーションのトレーニングを行います
 
 ### GitHub issueの作成
-  - メンバー分issue作成「メンバー.mdの作成」-> <メンバー名>.mdの作成「hoge」の記載
+「issues」タブを選択、「New Issue「New issue」を押下
+
+![create_issue1](./images/create_issue1.png)
+
+タイトル「<メンバー名>.mdの作成」の記載(<>内は各自のGitHubアカウント名)、Write「 <メンバー名>.mdの作成`hoge`の記載する」を記載し「Submit new issue」を押下
+
+![create_issue2](./images/create_issue2.png)
+
+作成したissueのパーマリンクを覚えておくこと(issueに限らずGitHubではパーマリンクが作成される)
+
+![create_issue3](./images/create_issue3.png)
 
 ### ローカルで開発
-　- issueに紐づくbranchの作成 -> git switch -> <メンバー>.mdの作成 -> git add -> git commit -> git push -> pr -> merge
+現在のbranchを確認
+
+```
+$ git branch
+* main
+```
+
+issueに紐づくbranchを作成(xxxxは各自のGitHubアカウント名)し遷移
+
+```
+$ git branch create_xxxx_markdownfile
+$ git switch create_hironomiu_markdownfile
+Switched to branch 'create_hironomiu_markdownfile'
+```
+
+確認
+
+```
+$ git branch
+* create_hironomiu_markdownfile
+  main
+```
+
+### 開発想定の作業
+<メンバー名>.mdを作成し`hoge`を記載しセーブ
+
+xxxxは各自のGitHubアカウント名
+
+```
+$ vi xxxx.md
+$ cat xxxx.md
+hoge
+```
+
+add & commit。commitメッセージに`fixed #1`を記載すること
+
+```
+$ git add .
+$ git commit -m "create markdown file fixd #1"
+[create_hironomiu_markdownfile 5a9a7dc] create markdown file fixd #1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 xxxx.md
+```
+
+push
+
+```
+$ git push origin create_hironomiu_markdownfile
+Warning: Permanently added 'github.com,52.192.72.89' (RSA) to the list of known hosts.
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 290 bytes | 290.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'create_hironomiu_markdownfile' on GitHub by visiting:
+remote:      https://github.com/hironomiu/20210119_github/pull/new/create_hironomiu_markdownfile
+remote:
+To github.com:hironomiu/20210119_github.git
+ * [new branch]      create_hironomiu_markdownfile -> create_hironomiu_markdownfile
+```
+
+「Pull requests」タブの選択、「New pull request」を押下
+
+![create_issue4](./images/create_issue4.png)
+
+「compare」に今回pushしたbranchを選択、「Create pull request」を押下
+
+![create_issue5](./images/create_issue5.png)
+
+Writeにメッセージがあれば記載(本来はLGTMは取り込み時に入れるメッセージ)、「Create pull request」を押下
+
+![create_issue6](./images/create_issue6.png)
+
+「Merge pull request」を押下(本来はPRの内容をレビューした後に行う)
+
+![create_issue7](./images/create_issue7.png)
+
+「Confirm merge」を押下
+
+![create_issue8](./images/create_issue8.png)
+
+「Delete branch」を押下(チームによっては消さない運用を選択する場合もあるが今回は削除する)
+
+![create_issue9](./images/create_issue9.png)
 
 ### ローカルに取り込み
-  - git switch main -> git fetch -> git merge
+- git switch main -> git fetch -> git merge
 
