@@ -213,7 +213,7 @@ add & commit。commitメッセージに`fixed #1`を記載すること
 
 ```
 $ git add .
-$ git commit -m "create markdown file fixd #1"
+$ git commit -m "create markdown file fixed #1"
 [create_hironomiu_markdownfile 5a9a7dc] create markdown file fixd #1
  1 file changed, 1 insertion(+)
  create mode 100644 xxxx.md
@@ -262,6 +262,57 @@ Writeにメッセージがあれば記載(本来はLGTMは取り込み時に入�
 
 ![create_issue9](./images/create_issue9.png)
 
-### ローカルに取り込み
-- git switch main -> git fetch -> git merge
+`main`に取り込まれていることをブラウザで確認
+
+![create_issue10](./images/create_issue10.png)
+
+
+## ローカルに取り込み
+チームメンバー(今回は自身のも)が開発しmainに取り込まれた内容をローカルのmainに取り込む
+
+switch
+
+```
+$ git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+```
+
+fetch
+
+```
+$ git fetch origin main
+Warning: Permanently added 'github.com,52.69.186.44' (RSA) to the list of known hosts.
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (1/1), 630 bytes | 315.00 KiB/s, done.
+From github.com:hironomiu/20210119_github
+ * branch            main       -> FETCH_HEAD
+   562e5d2..2d5efe9  main       -> origin/main
+```
+
+merge
+
+```
+$ git merge FETCH_HEAD
+Updating 562e5d2..2d5efe9
+Fast-forward
+ hironomiu.md | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hironomiu.md
+```
+
+ファイルの確認
+
+```
+$ ll
+total 8
+drwxr-xr-x   5 miurahironori  staff  160  1 19 13:02 .
+drwxr-xr-x   3 miurahironori  staff   96  1 19 11:56 ..
+drwxr-xr-x  15 miurahironori  staff  480  1 19 13:02 .git
+-rw-r--r--   1 miurahironori  staff    0  1 19 11:56 README.md
+-rw-r--r--   1 miurahironori  staff    5  1 19 13:02 hironomiu.md
+```
+
 
