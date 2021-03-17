@@ -1,23 +1,29 @@
 # Git-GitHub-Training
 
 ## Git
-基本的なgit操作(add,commit,etc)を学びます
+
+基本的な git 操作(add,commit,etc)を学びます
 
 ### ディレクトリ作成と遷移
+
 これから本演習を行うため任意のディレクトリでワークツリー用のディレクトリを作製し遷移しましょう
+
 ```
 $ mkdir git-practice
 $ cd git-practice/
 ```
 
-### Authorの確認
-今回はglobalで設定します(プロジェクト毎に設定したい場合はlocalで設定しましょう)初めての場合は以下のエラーがでます。
+### Author の確認
+
+今回は global で設定します(プロジェクト毎に設定したい場合は local で設定しましょう)初めての場合は以下のエラーがでます。
+
 ```
 $ git config --global --list
 fatal: unable to read config file ‘/Users/h-miura/.gitconfig’: No such file or directory
 ```
 
-設定(自身のuser.name、user.emailに置き換えましょう)
+設定(自身の user.name、user.email に置き換えましょう)
+
 ```
 $ git config --global user.name hironomiu
 $ git config --global user.email hironomiu@gmail.com
@@ -27,35 +33,46 @@ user.email=hironomiu@gmail.com
 ```
 
 ### デフォルトブランチの設定
+
 デフォルトブランチを`main`で設定しましょう
+
 ```
 $ git config --global init.defaultBranch main
 ```
-### git操作
+
+### git 操作
+
 初期化によるローカルリポジトリの作製(ワークツリーの作製)
+
 ```
 $ git init
 Initialized empty Git repository in /xxxx/git-practice/.git/
 ```
 
-branchの確認(何も表示されない。バージョンによっては`* master`が表示されることがある)
+branch の確認(何も表示されない。バージョンによっては`* master`が表示されることがある)
+
 ```
 $ git branch
 ```
 
 トラッキングの対象外の設定(`.gitignore`の作成)
+
 ```
 $ touch .gitignore
 $ ls .gitignore
 .gitignore
 ```
 
-giboを用いたトラッキングの対象外の設定(`.gitignore`の作成)。Macの場合`brew install gibo`でインストールでできる
+gibo を用いたトラッキングの対象外の設定(`.gitignore`の作成)。Mac の場合`brew install gibo`でインストールでできる
+
 ```
 $ gibo dump macOS >> .gitignore
 ```
 
-ワークツリーでREADME.mdファイルの作成と編集
+[gitignore.io](https://www.toptal.com/developers/gitignore)を使った`.gitignore`の作成方法もあります
+
+ワークツリーで README.md ファイルの作成と編集
+
 ```
 $ vi README.md
 $ cat README.md
@@ -63,7 +80,8 @@ $ cat README.md
 ```
 
 ステータス確認
-`.gitignore``README.md`がインデックス対象となっていること
+` .gitignore``README.md `がインデックス対象となっていること
+
 ```
 $ git status
 On branch main
@@ -79,13 +97,15 @@ nothing added to commit but untracked files present (use "git add" to track)
 ```
 
 add(インデックスに登録)
+
 ```
 $ git add README.md
 $ git add .gitignore
 ```
 
 ステータス確認
-`.gitignore``README.md`がコミット対象となっていること
+` .gitignore``README.md `がコミット対象となっていること
+
 ```
 $ git status
 On branch main
@@ -99,6 +119,7 @@ Changes to be committed:
 ```
 
 コミット(commit)でローカルリポジトリに記録。`-m`でコミットメッセージを記載しましょう
+
 ```
 $ git commit -m "created .gitignore README.md"
 [main (root-commit) fc9aa86] created .gitignore README.md
@@ -108,12 +129,14 @@ $ git commit -m "created .gitignore README.md"
 ```
 
 ブランチの確認
+
 ```
 $ git branch
 * main
 ```
 
 ステータス確認
+
 ```
 $ git status
 On branch main
@@ -121,6 +144,7 @@ nothing to commit, working tree clean
 ```
 
 ログの確認
+
 ```
 $ git log
 commit fc9aa867672f8bf471269849487933d15e92c81b (HEAD -> main)
@@ -130,7 +154,8 @@ Date:   Wed Nov 25 14:31:24 2020 +0900
     created .gitignore README.md
 ```
 
-Author,Commiterを確認
+Author,Commiter を確認
+
 ```
 $ git log --pretty=fuller
 commit fc9aa867672f8bf471269849487933d15e92c81b (HEAD -> main)
@@ -142,7 +167,8 @@ CommitDate: Wed Nov 25 14:31:24 2020 +0900
     created .gitignore README.md
 ```
 
-README.mdの末行に`hogefugapiyo`の追記
+README.md の末行に`hogefugapiyo`の追記
+
 ```
 $ vi README.md
 $ cat README.md
@@ -151,6 +177,7 @@ hogefugapiyo
 ```
 
 `git diff`で追記した`README.md`との差分を確認する
+
 ```
 $ git diff README.md
 diff --git a/README.md b/README.md
@@ -163,6 +190,7 @@ index 3e4b5a2..4d69739 100644
 ```
 
 ステータスの確認
+
 ```
 $ git status
 On branch main
@@ -175,24 +203,28 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 ワーキングディレクトリ内の変更の取り消し(インデックス前の取り消し)
+
 ```
 $ git restore README.md
 ```
 
 追記した内容以前に戻っていること
+
 ```
 $ cat README.md
 # git-practice
 ```
 
 ステータス確認
+
 ```
 $ git status
 On branch main
 nothing to commit, working tree clean
 ```
 
-README.mdの末行に`piyofugahoge`の追記
+README.md の末行に`piyofugahoge`の追記
+
 ```
 $ vi README.md
 $ cat README.md
@@ -201,6 +233,7 @@ piyofugahoge
 ```
 
 ステータス確認
+
 ```
 $ git status
 On branch main
@@ -213,6 +246,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 `git diff`で追記した`README.md`との差分を確認する
+
 ```
 $ git diff README.md
 diff --git a/README.md b/README.md
@@ -224,12 +258,14 @@ index 3e4b5a2..2565824 100644
 +piyofugahoge
 ```
 
-addでインデックスに登録する(`git add .`の`.`はカレントディレクトリ全てを指定する意味)
+add でインデックスに登録する(`git add .`の`.`はカレントディレクトリ全てを指定する意味)
+
 ```
 $ git add .
 ```
 
 ステータス確認
+
 ```
 $ git status
 On branch main
@@ -239,16 +275,19 @@ Changes to be committed:
 ```
 
 差分の確認(何も返らない)
+
 ```
 $ git diff README.md
 ```
 
 インデックスの登録を取り消す
+
 ```
 $ git restore --staged README.md
 ```
 
 ステータス確認
+
 ```
 $ git status
 On branch main
@@ -260,7 +299,8 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-差分の確認。README.mdの末行に`piyofugahoge`の追記が存在すること
+差分の確認。README.md の末行に`piyofugahoge`の追記が存在すること
+
 ```
 $ git diff README.md
 diff --git a/README.md b/README.md
@@ -273,6 +313,7 @@ index 3e4b5a2..2565824 100644
 ```
 
 ファイル確認(変更内容は残っている)
+
 ```
 $ cat README.md
 # git-practice
@@ -280,11 +321,13 @@ piyofugahoge
 ```
 
 add(インデックス登録)
+
 ```
 $ git add .
 ```
 
 ステータス確認
+
 ```
 $ git status
 On branch main
@@ -294,6 +337,7 @@ Changes to be committed:
 ```
 
 コミット(commit)でローカルリポジトリに記録
+
 ```
 $ git commit -m "modify README.md"
 [main b85751a] modify README.md
@@ -301,6 +345,7 @@ $ git commit -m "modify README.md"
 ```
 
 ステータス確認(`add commit`の対象が存在しないこと)
+
 ```
 $ git status
 On branch main
@@ -308,6 +353,7 @@ nothing to commit, working tree clean
 ```
 
 これまでのコミットログの確認(ログは下から上で時系列に並ぶ)
+
 ```
 $ git log
 commit b85751a3f95a9abd5815174cd5b78aaf2c8cc487 (HEAD -> main)
@@ -323,26 +369,30 @@ Date:   Wed Nov 25 14:31:24 2020 +0900
     created .gitignore README.md
 ```
 
-現在のREADME.mdの内容を確認
+現在の README.md の内容を確認
+
 ```
 $ cat README.md
 # git-practice
 piyofugahoge
 ```
 
-commitの取り消し(ワーキングディレクトリの内容も取り消し)
+commit の取り消し(ワーキングディレクトリの内容も取り消し)
+
 ```
 $ git reset --hard HEAD^
 HEAD is now at fc9aa86 created .gitignore README.md
 ```
 
-現在のREADME.mdの内容を確認
+現在の README.md の内容を確認
+
 ```
 $ cat README.md
 # git-practice
 ```
 
 コミットログから`modify README.md`のコミットログが取り消されていることを確認する(最新のコミットの取り消し)
+
 ```
 $ git log
 commit fc9aa867672f8bf471269849487933d15e92c81b (HEAD -> main)
@@ -352,9 +402,10 @@ Date:   Wed Nov 25 14:31:24 2020 +0900
     created .gitignore README.md
 ```
 
-**ここからはcommitの取り消し(インデックスに戻しワークツリーに戻す)を行う**
+**ここからは commit の取り消し(インデックスに戻しワークツリーに戻す)を行う**
 
-README.mdの末行に`piyofugahoge`の追記
+README.md の末行に`piyofugahoge`の追記
+
 ```
 $ vi README.md
 $ cat README.md
@@ -363,11 +414,13 @@ piyofugahoge
 ```
 
 add(インデックス登録)
+
 ```
 $ git add .
 ```
 
 commit(ローカルリポジトリに記録)
+
 ```
 $ git commit -m "modify README.md"
 [main cedfb1d] modify README.md
@@ -375,6 +428,7 @@ $ git commit -m "modify README.md"
 ```
 
 コミットログから`modify README.md`が追加されていることの確認
+
 ```
 $ git log
 commit cedfb1d94834035a034682d6514f797d2a57ebd4 (HEAD -> main)
@@ -390,12 +444,14 @@ Date:   Wed Nov 25 14:31:24 2020 +0900
     created .gitignore README.md
 ```
 
-commitの取り消し(インデックスに戻す)
+commit の取り消し(インデックスに戻す)
+
 ```
 $ git reset --soft HEAD^
 ```
 
 ステータスからコミット(`commit`)対象に`README.md`が存在することを確認
+
 ```
 $ git status
 On branch main
@@ -405,6 +461,7 @@ Changes to be committed:
 ```
 
 ファイル確認(変更内容は残っている)
+
 ```
 $ cat README.md
 # git-practice
@@ -412,11 +469,13 @@ piyofugahoge
 ```
 
 インデックスの取り消し
+
 ```
 $ git restore --staged README.md
 ```
 
 ファイルの確認
+
 ```
 $ cat README.md
 # git-practice
@@ -424,6 +483,7 @@ piyofugahoge
 ```
 
 ステータスからインデックス(`add`)対象に`README.md`が存在することを確認
+
 ```
 $ git status
 On branch main
@@ -435,12 +495,14 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-README.mdのワークツリー上の変更`piyofugahoge`の取り消し
+README.md のワークツリー上の変更`piyofugahoge`の取り消し
+
 ```
 $ git restore README.md
 ```
 
 ステータス確認
+
 ```
 $ git status
 On branch main
@@ -448,45 +510,53 @@ nothing to commit, working tree clean
 ```
 
 ファイル確認し末行に`piyofugahoge`が存在しないこと
+
 ```
 $ cat README.md
 # git-practice
 ```
 
-### Gitおさらい
+### Git おさらい
+
 インデックス
+
 ```
 $ git add XX
 ```
 
 コミット(`-m`でコミットメッセージを記載する)
+
 ```
 $ git commmit -m "XXX"
 ```
 
 差分の確認(様々な差分の確認方法があるので調べてみましょう)
+
 ```
 $ git diff XX
 ```
 
 状態の確認
+
 ```
 $ git status
 ```
 
 コミットログの確認
+
 ```
 $ git log
 ```
 
 ## GitHub
 
-### GitHubに公開鍵の登録
-鍵が作成できない or 扱えない人は行わなくてOKです
+### GitHub に公開鍵の登録
+
+鍵が作成できない or 扱えない人は行わなくて OK です
 
 #### 鍵の作成
 
-メールアドレスはGitHubに登録しているメールアドレスを設定しましょう。パスフレーズは設定しましょう
+メールアドレスは GitHub に登録しているメールアドレスを設定しましょう。パスフレーズは設定しましょう
 
 ```
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
@@ -503,23 +573,29 @@ The key's randomart image is:
 
 +----[SHA256]-----+
 ```
+
 #### 公開鍵のコピー
+
 クリップボードに公開鍵をコピーしましょう
+
 ```
 $ cat id_rsa.pub
 ```
 
 #### 鍵の登録
-右上からsettings -> SSH and GPG keys -> New SSH key押下
+
+右上から settings -> SSH and GPG keys -> New SSH key 押下
 
 ![ssh-key](./images/ssh-key.png)
 
-Title記入 -> Key(作成したid_rsa.pubの内容をコピペ) -> Add SSH key押下
+Title 記入 -> Key(作成した id_rsa.pub の内容をコピペ) -> Add SSH key 押下
 
 ![ssh-key2](./images/ssh-key2.png)
 
 #### 確認
-sshコマンドで`git`ユーザで`github.com`に対して接続確認を行う
+
+ssh コマンドで`git`ユーザで`github.com`に対して接続確認を行う
+
 ```
 $ ssh git@github.com
 Enter passphrase for key ;
@@ -529,11 +605,12 @@ Connection to github.com closed.
 ```
 
 ### リポジトリの作成
-これからの演習で使うGitHubリポジトリを`git-practice`で作成しましょう
+
+これからの演習で使う GitHub リポジトリを`git-practice`で作成しましょう
 
 ![new-repo](./images/new-repo.png)
 
-`Repository name`に`git-practice`を記載 -> Create repositoryを押下
+`Repository name`に`git-practice`を記載 -> Create repository を押下
 
 ![new-repo2](./images/new-repo2.png)
 
@@ -541,7 +618,8 @@ Connection to github.com closed.
 
 ![new-repo3](./images/new-repo3.png)
 
-注：以下`XXX`は各自のGitHubアカウント名となる
+注：以下`XXX`は各自の GitHub アカウント名となる
+
 ```
 $ git remote add origin git@github.com:XXX/git-practice.git
 $ git branch -M main
@@ -558,37 +636,40 @@ To github.com:XXX/git-practice.git
 Branch 'main' set up to track remote branch 'main' from 'origin'.
 ```
 
-ブラウザをリロードしてGitの演習で作成した内容が反映されていることを確認しましょう
+ブラウザをリロードして Git の演習で作成した内容が反映されていることを確認しましょう
 
 ![new-repo4](./images/new-repo4.png)
 
 ### 開発サイクル
-ここからはGitとGitHubを組み合わせ、開発サイクルで使われる代表的な機能を「issue、branch、add、commit、push、pull request、merge」を用いて行います
+
+ここからは Git と GitHub を組み合わせ、開発サイクルで使われる代表的な機能を「issue、branch、add、commit、push、pull request、merge」を用いて行います
 
 ### issue
-GitHubの画面から
 
-issues -> New issue押下
+GitHub の画面から
+
+issues -> New issue 押下
 
 ![issue](./images/issue.png)
 
-title`README編集`Write`fugahogepiyoを追記する`を記載 -> Submit new issue押下
+title`README編集`Write`fugahogepiyoを追記する`を記載 -> Submit new issue 押下
 
 ![issue2](./images/issue2.png)
 
-issueが登録されていること`#1`はこのissueのパーマリンク。GitHubでは様々なパーマリンックがあります
+issue が登録されていること`#1`はこの issue のパーマリンク。GitHub では様々なパーマリンックがあります
 
 ![issue3](./images/issue3.png)
 
 ### branch
-ローカルリポジトリではデフォルトブランチのmainで活動してることを確認しましょう。`*`のポインターが付いているブランチが現在作業しているブランチです
+
+ローカルリポジトリではデフォルトブランチの main で活動してることを確認しましょう。`*`のポインターが付いているブランチが現在作業しているブランチです
 
 ```
 $ git branch
 * main
 ```
 
-issueに紐づく作業を行うbranch`modify-readme`を作成しましょう
+issue に紐づく作業を行う branch`modify-readme`を作成しましょう
 
 ```
 $ git branch modify-readme
@@ -597,14 +678,14 @@ $ git branch
   modify-readme
 ```
 
-作業するbranchを`main`から`modify-readme`に遷移しましょう
+作業する branch を`main`から`modify-readme`に遷移しましょう
 
 ```
 $ git switch modify-readme
 Switched to branch 'modify-readme'
 ```
 
-現在の作業branchが`modify-readme`にポインタが指し示していることを確認しましょう
+現在の作業 branch が`modify-readme`にポインタが指し示していることを確認しましょう
 
 ```
 $ git branch
@@ -612,8 +693,9 @@ $ git branch
 * modify-readme
 ```
 
-### README.md編集
-issueに記載した作業内容をREADME.mdに対して編集しましょう
+### README.md 編集
+
+issue に記載した作業内容を README.md に対して編集しましょう
 
 ```
 $ vi README.md
@@ -623,7 +705,9 @@ fugahogepiyo
 ```
 
 ### add&commit
+
 ステータス確認
+
 ```
 $ git status
 On branch modify-readme
@@ -636,6 +720,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 diff
+
 ```
 $ git diff
 diff --git a/README.md b/README.md
@@ -648,11 +733,13 @@ index 3e4b5a2..40551f9 100644
 ```
 
 add
+
 ```
 $ git add .
 ```
 
-commit(コミットメッセージにissue`#1`の作業であることを記載しましょう)
+commit(コミットメッセージに issue`#1`の作業であることを記載しましょう)
+
 ```
 $ git commit -m "#1 modify README.md"
 [modify-readme 8f20d8c] #1 modify README.md
@@ -660,16 +747,18 @@ $ git commit -m "#1 modify README.md"
 ```
 
 ステータス確認
+
 ```
 $ git status
 On branch modify-readme
 nothing to commit, working tree clean
 ```
 
-### GitHub originの確認
-GitHubリポジトリ(今回はこちらがorigin)を確認しましょう
+### GitHub origin の確認
 
-注：`XXX`は各GitHubユーザが表示される
+GitHub リポジトリ(今回はこちらが origin)を確認しましょう
+
+注：`XXX`は各 GitHub ユーザが表示される
 
 ```
 $ git remote -v
@@ -678,7 +767,8 @@ origin	git@github.com:XXX/git-practice.git (push)
 ```
 
 ### push
-作成したmodify-readmeをGitHubリポジトリ`git-practice`にpushしましょう
+
+作成した modify-readme を GitHub リポジトリ`git-practice`に push しましょう
 
 ```
 $ git push origin modify-readme
@@ -695,7 +785,7 @@ To github.com:hironomiu/git-practice.git
  * [new branch]      modify-readme -> modify-readme
 ```
 
-GitHub上でpushされたbranchを確認しましょう
+GitHub 上で push された branch を確認しましょう
 
 ![push](./images/push.png)
 
@@ -703,8 +793,9 @@ GitHub上でpushされたbranchを確認しましょう
 
 ![push2](./images/push2.png)
 
-### pull requestの作成とmerge
-GitHubの画面から`Pull request`タブを選択 -> `New pull request`を押下(`Compare & pull request`でも同様のことは可能)
+### pull request の作成と merge
+
+GitHub の画面から`Pull request`タブを選択 -> `New pull request`を押下(`Compare & pull request`でも同様のことは可能)
 
 ![pr](./images/pr.png)
 
@@ -728,11 +819,11 @@ Write`fixed #1`を記載 -> `Create pull request`を押下
 
 ![pr6](./images/pr6.png)
 
-`Pull requests`タブを選択。pull requestが存在しない(closeされている)ことを確認
+`Pull requests`タブを選択。pull request が存在しない(close されている)ことを確認
 
 ![pr7](./images/pr7.png)
 
-`issues`タブを選択。issueが存在しない(closeされている)ことを確認
+`issues`タブを選択。issue が存在しない(close されている)ことを確認
 
 ![pr8](./images/pr8.png)
 
@@ -741,23 +832,26 @@ Write`fixed #1`を記載 -> `Create pull request`を押下
 ![pr9](./images/pr9.png)
 
 ## ローカル取り込み(fetch & merge)
-ここではリモートGitHubリポジトリのmainからローカルのmainに最新の取り込みを行います
 
-branchの確認(このオペレーションでは`modify-readme`が作業branchとしてさされている)
+ここではリモート GitHub リポジトリの main からローカルの main に最新の取り込みを行います
+
+branch の確認(このオペレーションでは`modify-readme`が作業 branch としてさされている)
+
 ```
 $ git branch
   main
 * modify-readme
 ```
 
-mainbに遷移する
+mainb に遷移する
+
 ```
 $ git switch main
 Switched to branch 'main'
 Your branch is up to date with 'origin/main'.
 ```
 
-branchの確認(`main`を差していること)
+branch の確認(`main`を差していること)
 
 ```
 $ git branch
@@ -765,7 +859,7 @@ $ git branch
   modify-readme
 ```
 
-リモートGitHubリポジトリのmainの最新をfetchでローカルに取得する
+リモート GitHub リポジトリの main の最新を fetch でローカルに取得する
 
 ```
 $ git fetch origin main
@@ -780,6 +874,7 @@ From github.com:hironomiu/git-practice
 ```
 
 diff
+
 ```
 $ git diff HEAD FETCH_HEAD
 diff --git a/README.md b/README.md
@@ -791,7 +886,7 @@ index 3e4b5a2..40551f9 100644
 +fugahogepiyo
 ```
 
-ローカルのmainリポジトリにリモートリポジトリから取得したFETCH_HEADをmergeで取り込みましょう
+ローカルの main リポジトリにリモートリポジトリから取得した FETCH_HEAD を merge で取り込みましょう
 
 ```
 $ git merge FETCH_HEAD
@@ -802,6 +897,7 @@ Fast-forward
 ```
 
 diff(何もないので同じ状態)
+
 ```
 $ git diff HEAD FETCH_HEAD
 ```
@@ -814,19 +910,21 @@ $ cat README.md
 fugahogepiyo
 ```
 
-今回はリモートリポジトリからfetch->mergeでローカルリポジトリのmainに最新を取り込んだが、ローカルで別branchで開発した内容は直接mainにmergeすることも可能です
+今回はリモートリポジトリから fetch->merge でローカルリポジトリの main に最新を取り込んだが、ローカルで別 branch で開発した内容は直接 main に merge することも可能です
 
-## CONFLICTの解消
-ここではCONFLICTを発生させ解決していきます。ここまで行ったローカルリポジトリ(ターミナル1と呼ぶ)と別でもう一つローカルリポジトリを作成(`clone`にて、ターミナル2と呼ぶ)しオペレーションは行っていきます。
+## CONFLICT の解消
+
+ここでは CONFLICT を発生させ解決していきます。ここまで行ったローカルリポジトリ(ターミナル 1 と呼ぶ)と別でもう一つローカルリポジトリを作成(`clone`にて、ターミナル 2 と呼ぶ)しオペレーションは行っていきます。
 
 ### clone
-GitHubリポジトリ -> `Code`プルダウン -> `SSH`タブ選択 -> クリップボードにコピー
+
+GitHub リポジトリ -> `Code`プルダウン -> `SSH`タブ選択 -> クリップボードにコピー
 
 ![clone](./images/clone.png)
 
 ここまでのローカルリポジトリのディレクトリとは別ターミナル(ターミナル２)を用意し、任意の別ディレクトリでクリップボードにコピーした内容を`git clone `のあとにペーストし実行しましょう
 
-注：`XXX`はコピーした自分のGitHubアカウント名が入る
+注：`XXX`はコピーした自分の GitHub アカウント名が入る
 
 ```
 $ git clone git@github.com:XXX/git-practice.git
@@ -846,9 +944,9 @@ Resolving deltas: 100% (4/4), done.
 $ cd git-practice
 ```
 
-### ターミナル1(最初のリポジトリ)で作業
+### ターミナル 1(最初のリポジトリ)で作業
 
-`first`branchの作成と遷移、確認(`first`を指し示していること)
+`first`branch の作成と遷移、確認(`first`を指し示していること)
 
 ```
 $ git branch first
@@ -860,7 +958,8 @@ $ git branch
   modify-readme
 ```
 
-README.mdの末行に`first`の追記編集
+README.md の末行に`first`の追記編集
+
 ```
 $ vi README.md
 $ cat README.md
@@ -869,7 +968,8 @@ fugahogepiyo
 first
 ```
 
-addとcommit
+add と commit
+
 ```
 $ git add .
 $ git commit -m "first"
@@ -877,7 +977,7 @@ $ git commit -m "first"
  1 file changed, 1 insertion(+)
 ```
 
-GitHubリポジトリに`first`branchをpush
+GitHub リポジトリに`first`branch を push
 
 ```
 # git push origin first
@@ -896,13 +996,13 @@ To github.com:hironomiu/git-practice.git
  * [new branch]      first -> first
 ```
 
-branchesタブを選択し`first`branchが存在することを確認
+branches タブを選択し`first`branch が存在することを確認
 
 ![branch](./images/branch.png)
 
-### ターミナル2(新しいリポジトリ)で作業
+### ターミナル 2(新しいリポジトリ)で作業
 
-`second`branchの作成と遷移、確認(`second`を指し示していること)
+`second`branch の作成と遷移、確認(`second`を指し示していること)
 
 ```
 $ git branch second
@@ -913,7 +1013,7 @@ $ git branch
 * second
 ```
 
-README.mdの末行に`second`の追記編集
+README.md の末行に`second`の追記編集
 
 ```
 $ vi README.md
@@ -923,7 +1023,7 @@ fugahogepiyo
 second
 ```
 
-addとcommit
+add と commit
 
 ```
 $ git add .
@@ -932,7 +1032,7 @@ $ git commit -m "second"
  1 file changed, 1 insertion(+)
 ```
 
-GitHubリポジトリに`second`branchをpush
+GitHub リポジトリに`second`branch を push
 
 ```
 $ git push origin second
@@ -947,17 +1047,17 @@ To github.com:hironomiu/git-practice.git
    6ee5cfa..8534bb0  second -> second
 ```
 
-branchesタブを選択し`second`branchが存在することを確認
+branches タブを選択し`second`branch が存在することを確認
 
 ![branch2](./images/branch2.png)
 
-### ターミナル1、pull requestの作成とmerge
+### ターミナル 1、pull request の作成と merge
 
-GitHubの画面から`Pull requests`タブ -> `New pull request`を押下
+GitHub の画面から`Pull requests`タブ -> `New pull request`を押下
 
 ![pr-a](./images/pr-a.png)
 
-`first`branchを選択 -> `Create pull request`を押下
+`first`branch を選択 -> `Create pull request`を押下
 
 ![pr-a2](./images/pr-a2.png)
 
@@ -971,13 +1071,13 @@ Write`first`を記載 -> `Create pull request`を押下
 
 `Delete branch`は省略する
 
-### ターミナル2、pull requestの作成とmerge
+### ターミナル 2、pull request の作成と merge
 
-GitHubの画面から`Pull requests`タブ -> `New pull request`を押下
+GitHub の画面から`Pull requests`タブ -> `New pull request`を押下
 
 ![pr-a](./images/pr-a.png)
 
-`second`branchを選択 -> `Create pull request`を押下
+`second`branch を選択 -> `Create pull request`を押下
 
 ![pr-b2](./images/pr-b2.png)
 
@@ -985,25 +1085,27 @@ Write`second`を記載 -> `Create pull request`を押下
 
 ![pr-b3](./images/pr-b3.png)
 
-conflictが発生していることを確認
+conflict が発生していることを確認
 
 ![pr-b4](./images/pr-b4.png)
 
-### ターミナル2でコンフリクトの解消
-リモートリポジトリのmainの最新をfetch
+### ターミナル 2 でコンフリクトの解消
+
+リモートリポジトリの main の最新を fetch
 
 ```
 $ git fetch origin main
 ```
 
-branchの確認(`second`であること)
+branch の確認(`second`であること)
+
 ```
 $ git branch
   main
 * second
 ```
 
-`second`branchにFETCH_HEADをmergeで取り込む
+`second`branch に FETCH_HEAD を merge で取り込む
 
 ```
 $ git merge FETCH_HEAD
@@ -1025,7 +1127,8 @@ first
 >>>>>>> 7b868e363d289674d599834ca25fc0517cda97fe
 ```
 
-CONFLICTを解消(今回は末行に`second`,`first`の順で編集、実際のコンフリクトはあるべき姿に編集する)
+CONFLICT を解消(今回は末行に`second`,`first`の順で編集、実際のコンフリクトはあるべき姿に編集する)
+
 ```
 $ vi README.md
 $ cat README.md
@@ -1036,13 +1139,15 @@ first
 ```
 
 add&commit
+
 ```
 $ git add .
 $ git commit -m "CONFLICTの修正"
 [second a1807fb] CONFLICTの修正
 ```
 
-リモートリポジトリに`second`branchの最新commitをpush
+リモートリポジトリに`second`branch の最新 commit を push
+
 ```
 $ git push origin second
 Warning: Permanently added 'github.com,52.69.186.44' (RSA) to the list of known hosts.
@@ -1056,7 +1161,7 @@ To github.com:hironomiu/git-practice.git
    8534bb0..a1807fb  second -> second
 ```
 
-GitHubの`Pull reqests`タブ画面でグリーンになっていることを確認し`Merge pull request`を押下
+GitHub の`Pull reqests`タブ画面でグリーンになっていることを確認し`Merge pull request`を押下
 
 ![pr-b5](./images/pr-b5.png)
 
@@ -1064,7 +1169,7 @@ GitHubの`Pull reqests`タブ画面でグリーンになっていることを確
 
 ![pr-b6](./images/pr-b6.png)
 
-Delete branchは省略`<>Code`タブ、`README.md`に`second first`の記述が追加されていること
+Delete branch は省略`<>Code`タブ、`README.md`に`second first`の記述が追加されていること
 
 ![pr-b7](./images/pr-b7.png)
 
