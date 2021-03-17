@@ -1,10 +1,18 @@
 # Git-GitHub-Training
 
+ここでは以下をハンズオン形式で行います
+
+- 基本的な Git＆GitHub 操作
+- Git&GitHub を用いた「issue -> branch -> add -> commit -> push、pull request -> merge」の開発フロー
+- コンフリクトの解消
+
 ## Git
 
-基本的な git 操作(add,commit,etc)を学びます
+基本的な git 操作(add,commit,etc)を行います
 
-### ディレクトリ作成と遷移
+### 準備
+
+#### ディレクトリ作成と遷移
 
 これから本演習を行うため任意のディレクトリでワークツリー用のディレクトリを作製し遷移しましょう
 
@@ -13,7 +21,7 @@ $ mkdir git-practice
 $ cd git-practice/
 ```
 
-### Author の確認
+#### Author の確認
 
 今回は global で設定します(プロジェクト毎に設定したい場合は local で設定しましょう)初めての場合は以下のエラーがでます。
 
@@ -32,7 +40,7 @@ user.name=hironomiu
 user.email=hironomiu@gmail.com
 ```
 
-### デフォルトブランチの設定
+#### デフォルトブランチの設定
 
 デフォルトブランチを`main`で設定しましょう
 
@@ -40,9 +48,11 @@ user.email=hironomiu@gmail.com
 $ git config --global init.defaultBranch main
 ```
 
-### git 操作
+### Git 操作
 
-初期化によるローカルリポジトリの作製(ワークツリーの作製)
+#### init
+
+init(初期化)によるローカルリポジトリの作製(ワークツリーの作製)
 
 ```
 $ git init
@@ -54,6 +64,8 @@ branch の確認(何も表示されない。バージョンによっては`* mas
 ```
 $ git branch
 ```
+
+#### .gitignore
 
 トラッキングの対象外の設定(`.gitignore`の作成)
 
@@ -69,7 +81,11 @@ gibo を用いたトラッキングの対象外の設定(`.gitignore`の作成)�
 $ gibo dump macOS >> .gitignore
 ```
 
-[gitignore.io](https://www.toptal.com/developers/gitignore)を使った`.gitignore`の作成方法もあります
+[gitignore.io](https://www.toptal.com/developers/gitignore)を使った`.gitignore`の設定方法もあります
+
+#### オペレーション
+
+ここらからは開発想定として Markdown ファイルを作成編集し、それを git 管理(add,commi)していきます
 
 ワークツリーで README.md ファイルの作成と編集
 
