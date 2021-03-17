@@ -185,7 +185,7 @@ CommitDate: Wed Nov 25 14:31:24 2020 +0900
 
 #### オペレーション
 
-ここでは開発想定で README.md を編集し、それをインデックスを行う前で作業内容をなかったこと(取り消し)を行います
+ここでは開発想定で README.md を編集し、それをインデックスを行う前で作業内容の取り消しを行います
 
 README.md の末行に`hogefugapiyo`の追記
 
@@ -242,6 +242,10 @@ $ git status
 On branch main
 nothing to commit, working tree clean
 ```
+
+#### オペレーション
+
+ここでは開発想定で README.md を編集し、それをインデックス後(add)作業内容を**インデックス前**の状態に戻します
 
 README.md の末行に`piyofugahoge`の追記
 
@@ -339,6 +343,8 @@ $ cat README.md
 # git-practice
 piyofugahoge
 ```
+
+#### オペレーション
 
 add(インデックス登録)
 
