@@ -590,8 +590,10 @@ GitHub は SSH と HTTPS の 2 つのプロトコルが利用できます。SSH 
 
 メールアドレスは GitHub に登録しているメールアドレスを設定しましょう。パスフレーズは設定しましょう
 
+**ファイル名(省略した場合は id_rsa)について作成したファイルは一般的には`~/.ssh`に`600`で配置します。ファイル名が衝突する場合は適時命名してください**
+
 ```
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/miurahironori/.ssh/id_rsa): ファイル名(省略した場合はid_rsa)
 Enter passphrase (empty for no passphrase): パスフレーズ
