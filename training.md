@@ -183,6 +183,10 @@ CommitDate: Wed Nov 25 14:31:24 2020 +0900
     created .gitignore README.md
 ```
 
+#### オペレーション
+
+ここでは開発想定で README.md を編集し、それをインデックスを行う前で作業内容をなかったこと(取り消し)を行います
+
 README.md の末行に`hogefugapiyo`の追記
 
 ```
