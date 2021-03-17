@@ -430,6 +430,8 @@ Date:   Wed Nov 25 14:31:24 2020 +0900
     created .gitignore README.md
 ```
 
+#### オペレーション
+
 **ここからは commit の取り消し(インデックスに戻しワークツリーに戻す)を行う**
 
 README.md の末行に`piyofugahoge`の追記
