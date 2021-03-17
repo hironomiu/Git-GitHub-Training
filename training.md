@@ -676,7 +676,7 @@ Branch 'main' set up to track remote branch 'main' from 'origin'.
 
 ### 開発サイクル
 
-ここからは Git と GitHub を組み合わせ、開発サイクルで使われる代表的な機能を「issue、branch、add、commit、push、pull request、merge」を用いて行います
+ここからは Git と GitHub を組み合わせ、「**issue -> branch -> add -> commit -> push、pull request -> merge**」までの開発フローを行っていきます
 
 ### issue
 
