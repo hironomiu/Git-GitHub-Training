@@ -640,7 +640,7 @@ Connection to github.com closed.
 
 ### リポジトリの作成
 
-これからの演習で使う GitHub リポジトリを`git-practice`で作成しましょう
+ここまで Git の演習でローカルで作ったリポジトリをこれからの GitHub の演習用の pusu する先として`git-practice`を作成しましょう
 
 ![new-repo](./images/new-repo.png)
 
