@@ -20,8 +20,8 @@
   - Git&GitHub を用いた「issue -> branch -> add -> commit -> push、pull request -> merge」の開発フロー
   - コンフリクトの解消
 - [チーム開発ことはじめ : additional.md](additional.md)
-  - コラボレータの招待
-  - Git&GitHub を用いた「issue -> branch -> add -> commit -> push、pull request -> merge」の開発フロー
+  - GitHub チームメンバーを開発リポジトリにコラボレータ機能で招待
+  - Git&GitHub を用いた「issue -> branch -> add -> commit -> push、pull request -> merge」の開発フローをチーム想定で複数人で行う
 
 ## 演習の進め方
 
