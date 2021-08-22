@@ -1,4 +1,4 @@
-#　個人アクセストークンを利用し HTTPS 経由の GitHub の利用
+# 個人アクセストークンを利用し HTTPS 経由の GitHub の利用
 
 `Settings`を押下
 ![access-token-01](./images/access-token-01.png)
