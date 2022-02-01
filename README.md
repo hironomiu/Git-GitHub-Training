@@ -27,3 +27,7 @@
 
 - [入門編 : training.md](./training.md)を上から順に進めましょう
 - [チーム開発ことはじめ : additional.md](additional.md) collaborators などを使ったチーム開発についてはこちらを進めましょう
+
+## 発展
+
+- [GitHub CLI,GitHub Actionsについて](https://github.com/hironomiu/github-cli-and-actions-training)
